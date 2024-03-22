@@ -18,6 +18,11 @@ jobs:
       - name: Install pandas
         run: pip install pandas
 
+      - name: Install tabulate
+        run: pip install tabulate
+
+        
+
       - name: Run Automation Script
         env:
           GITHUB_TOKEN: ${{ secrets.my_token }}
