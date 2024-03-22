@@ -12,6 +12,6 @@ jobs:
       - name: Trigger Child Workflow
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: ${{ secrets.vater }}  # Personal Access Token with repo scope
+          token: ${{ secrets.kind }}  # Personal Access Token with repo scope
           repository: matze240/kind
           event-type: start-child-workflow
