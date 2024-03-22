@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'master_table/'
+    #paths:
+      #- 'master_table/'
 
 jobs:
   update_sidebar:
