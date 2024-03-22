@@ -21,6 +21,9 @@ jobs:
       - name: Install tabulate
         run: pip install tabulate
 
+      - name: Install plotly
+        run: pip install plotly
+
         
 
       - name: Run Automation Script
