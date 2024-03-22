@@ -14,6 +14,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+      
+      - name: Install pandas
+        run: pip install pandas
 
       - name: Run Automation Script
         env:
