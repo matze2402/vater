@@ -1,0 +1,3 @@
+|    | PIMS-II_IRI                                          | PIMS-II_DESC                                                                 | RXNO_IRI                                   | RXNO_DESC                                    |
+|---:|:-----------------------------------------------------|:-----------------------------------------------------------------------------|:-------------------------------------------|:---------------------------------------------|
+|  0 | http://www.molmod.info/semantics/pims-ii.ttl#Process | {'label': 'Process', 'prefLabel': None, 'altLabel': None, 'name': 'Process'} | http://purl.obolibrary.org/obo/BFO_0000015 | {'label': 'Process', 'prefLabel': 'Process'} |

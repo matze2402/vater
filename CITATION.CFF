@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Behr"
+  given-names: "Alexander S."
+  orcid: "https://orcid.org/0000-0003-4620-8248"
+- family-names: "Borgelt"
+  given-names: "Hendrik"
+  orcid: "https://orcid.org/0000-0001-5886-7860"
+- family-names: "Kockmann"
+  given-names: "Norbert"
+  orcid: "https://orcid.org/0000-0002-2367-1988"
+title: "Ontologies4Cat: investigating the landscape of ontologies for catalysis research data management"
+version: 2.0.4
+doi: https://doi.org/10.1186/s13321-024-00807-2
+date-released: 2024-02-07
+url: "https://github.com/nfdi4cat/Ontology-Overview-of-NFDI4Cat"

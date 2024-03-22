@@ -1,0 +1,62 @@
+{	
+	"Ontology":
+		[
+			{"Ontology Name": "Full Name"},
+			{"Synonyms/Alternative Names": "Synonyms/Alternative Names"},
+			{"Ontology Acronym": "Ontology Acronym"},
+			{"Creator(s) & Issuing Organisation": "Creator(s) & Issuing Organisation"},
+			{"Kind Of Organisational Structure (maintainability & Sustainability)": "Nature of Organisational Structure"}			
+		],
+	"References":
+		[
+			{"Organisational Website": "Organisational Website"},
+			{"Persistent URI of Ontology File (or perma link to latest Version)": "Persistent URI of Ontology File"},
+			{"Link to Documentation": "Link to Documentation"},
+			{"Link to Version directory": "Link to Version directory"},
+			{"Optional links (Papers, Additional GitHub Repo,...)": "Optional links (Papers, Repos,...)"}			
+		],
+	"Ontology Modeling And Availability":
+		[
+			{"Ontology Dataformats provided (ttl, owl, rdf/xml, n3)": "Ontology Formats Provided"},
+			{"Degree of Inference/Composition (possible entries: non inferred/preinferred; compacted/non-compacted (import statements in file))": "Degree of Inference/Composition"},
+			{"License": "License"},
+			{"Reasonable with": "Validated Resoning with"},
+			{"Reasonable Shortest reasoning time": "Shortest reasoning time"},
+			{"Aligned with Top Level Ontology (BFO, OBO or EMMO ?)": "Aligned with Top Level Ontology"},
+			{"Imports Ontology(ies)": "Imports Ontology(ies)"},
+			{"Prefixes used": "Prefixes used"},
+			{"Class annotation types": "Class annotation types"}
+		],
+	"Domain of Interest Represented (contained, related: broader/narrower, missing)":
+		[
+			{"Top Level Ontology":"Top Level Ontology"},
+			{"Process Design, Energy and Cost Data":"Process Design, Energy and Cost Data"},
+			{"Heat, Transport and Kinetic Data":"Heat, Transport and Kinetic Data"},
+			{"Characterisation Data":"Characterisation Data"},
+			{"Performance Data":"Performance Data"},
+			{"Operando Data":"Operando Data"},
+			{"Synthesis Data":"Synthesis Data"},
+			{"Process Modeling":"Process Modeling"},
+			{"Material Modeling":"Material Modeling"},
+			{"Chemical Substance Modeling":"Chemical Substance Modeling"},
+			{"Photocatalysis":"Photocatalysis"},
+			{"Electrocatalysis":"Electrocatalysis"},
+			{"Heterogenous catalysis":"Heterogenous catalysis"},
+			{"Homogenous catalysis":"Homogenous catalysis"},
+			{"Biocatalysis":"Biocatalysis"}
+		],
+	"Ontology Characteristics":
+		[
+			{"Axioms":"Axioms"},
+			{"Logical":"Logical"},
+			{"Declaration":"Declaration"},
+			{"Class count":"Class count"},
+			{"Object property count":"Object property count"},
+			{"Data property count":"Data property count"},
+			{"Individual count":"Individual count"},
+			{"Annotation Property count":"Annotation Property count"}
+		],
+	"Comments":
+		[
+		]
+}

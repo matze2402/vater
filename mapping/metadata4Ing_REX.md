@@ -1,0 +1,3 @@
+|    | metadata4ing_IRI                      | metadata4ing_DESC                                                                    | REX_IRI                                    | REX_DESC                 | REX_DEF   |
+|---:|:--------------------------------------|:-------------------------------------------------------------------------------------|:-------------------------------------------|:-------------------------|:----------|
+|  0 | http://www.w3.org/ns/prov#Association | {'label': None, 'prefLabel': 'Association', 'altLabel': None, 'name': 'Association'} | http://purl.obolibrary.org/obo/REX_0000150 | {'label': 'Association'} | []        |
