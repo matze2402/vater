@@ -1,0 +1,22 @@
+name: Update Sidebar
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'master_table/'
+
+jobs:
+  update_sidebar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Run Automation Script
+        env:
+          GITHUB_TOKEN: ${{ secrets.my_token }}
+        run: |
+          python .github/scripts/convert.py
