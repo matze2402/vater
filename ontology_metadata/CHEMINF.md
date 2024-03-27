@@ -69,7 +69,7 @@
 | Object property count | 111 |
 | Data property count | 7 |
 | Individual count | 20 |
-| Annotation Property count | 8666 |
+| Annotation Property count | 85 |
 
 ## Comments
 
