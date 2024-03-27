@@ -5,12 +5,14 @@ from tabulate import tabulate
 import plotly.graph_objects as go
 
 def ConvertExcelToMD(PathToExcel):
+    print("Converting Excel to MD...")
     onto_list = pd.ExcelFile(PathToExcel).sheet_names
     # Remove Sheet names with non-ontology names:
     ignore_sheets = ['Template mit Beispiel', 'List_zu_betrachtende_Ontologien']
     onto_list = [sheet for sheet in onto_list if sheet not in ignore_sheets]
     
     for onto_name in onto_list:
+        print(f"Processing ontology: {onto_name}")
         table = pd.read_excel(PathToExcel, sheet_name=onto_name)
         
         with open("./json/GeneralStructure.json") as f: 
@@ -28,7 +30,7 @@ def ConvertExcelToMD(PathToExcel):
                     list_index = data_table.index(key)
                     ontodata_dict[superkey][key] = data_table[list_index+1]
         
-        with open("./json/"+onto_name+".json", "w") as f:
+        with open(f"./json/{onto_name}.json", "w") as f:
             json.dump(ontodata_dict, f)
             
         with open("./json/md-translator.json") as f:     
@@ -37,7 +39,7 @@ def ConvertExcelToMD(PathToExcel):
         outstring = "## " + onto_name + " - " + ontodata_dict["Ontology"]["Ontology Name"] + "\n\n"   
         # DomainRadarPlotter(onto_name)  # Uncomment this if you want to generate radar plots
         
-        outstring += "\n ## Radarplot \n\n [HTML-Version](../radarplots/Radarplot_{}.html) ![Radarplot for Domains of ontology {}](../radarplots/Radarplot_{}.svg) \n".format(onto_name, onto_name, onto_name, onto_name)
+        outstring += f"\n ## Radarplot \n\n [HTML-Version](../radarplots/Radarplot_{onto_name}.html) ![Radarplot for Domains of ontology {onto_name}](../radarplots/Radarplot_{onto_name}.svg) \n"
         
         table_string = "|Aspect |Description| \n |:---|:---|\n"
         
@@ -47,40 +49,43 @@ def ConvertExcelToMD(PathToExcel):
                 for i in ontodata_dict[key]:
                     outstring += str(i) + "\n"
             else:
-                outstring += "## "+ key + "\n\n"
+                outstring += f"## {key}\n\n"
                 outstring += table_string
                 for dict_list in translator_dict[key]:
-                    outstring += "| " + str(list(dict_list.values())[0]) + " | "+ str(ontodata_dict[key][list(dict_list.keys())[0]]) + " |\n"
+                    outstring += f"| {list(dict_list.values())[0]} | {ontodata_dict[key][list(dict_list.keys())[0]]} |\n"
                 outstring += "\n"
                 
-        with open('./ontology_metadata/'+ onto_name +'.md', 'w') as f:
+        with open(f'./ontology_metadata/{onto_name}.md', 'w') as f:
             f.write(outstring)
+    print("Conversion completed.")
 
 def load_ontologies_metadata():
+    print("Loading ontologies metadata...")
     json_list = [f for f in os.listdir('./json/') if (f.endswith('.json') and f != "GeneralStructure.json" and f!= "md-translator.json" and f!= "ontology_domains.json")]
     metadata_dict = {}
     for json_name in json_list:
-        with open('./json/' + json_name) as file:
+        with open(f'./json/{json_name}') as file:
             onto_metadata = json.load(file)
             metadata_dict[onto_metadata["Ontology"]["Ontology Acronym"]] = onto_metadata
-  
+    print("Metadata loaded.")
     return metadata_dict        
 
 def UpdateMainReadme(): 
+    print("Updating Main Readme...")
     path = './ontology_metadata/'
     markdown_list = [s for s in os.listdir(path) if s.endswith('.md')]
     print_list = "| Link to Markdown | Ontology Name |\n |:---:|:---|\n"
     
     for i in markdown_list:
         ontology_name = i.replace('.md','')
-        with open('./json/' + ontology_name + '.json') as dictFile:
+        with open(f'./json/{ontology_name}.json') as dictFile:
             onto_dict = json.load(dictFile)
         
-        print_list += '| [' + ontology_name + '] |' + onto_dict["Ontology"]["Ontology Name"] +' |\n'
+        print_list += f'| [{ontology_name}] | {onto_dict["Ontology"]["Ontology Name"]} |\n'
     
     print_list += '\n'
     for i in markdown_list:
-        print_list += '[' + i.replace('.md','') + ']: ./ontology_metadata/' + i + '\n' 
+        print_list += f'[{i.replace(".md","")}]: ./ontology_metadata/{i}\n' 
     
     with open('./Main_Readme_Update.txt', 'w') as f:
         f.write(print_list)
@@ -105,8 +110,10 @@ def UpdateMainReadme():
         f.write("\n The ontologies are classified with regards to their research domain [here](./Radarplots.md).\n")
         f.write("\n [Here](./Radarplot.html) you can find the Radar plot as interactive plot.\n")
         f.write("\n ![Map of Ontologies for Catalysis Research Domains](./Fig2-OntoMap.svg)\n")
-    
+    print("Main Readme updated.")
+
 def Heatmap_to_Markdown():
+    print("Converting Heatmap to Markdown...")
     df = pd.read_excel('MappingHeatmap.xlsx')
     md_dict = load_ontologies_metadata()
     df = df.fillna('')
@@ -130,16 +137,20 @@ def Heatmap_to_Markdown():
     df.rename(columns={'[Unnamed: 0]': ''}, inplace=True)
     
     df.to_markdown('Heatmap_Classes.md', index=False)
+    print("Heatmap conversion to Markdown completed.")
 
 def Mappings_to_Markdown():
+    print("Converting Mappings to Markdown...")
     file_list = [f for f in os.listdir('./mapping/') if f.endswith('.xlsx')]
     
     for file in file_list:
         df = pd.read_excel('./mapping/'+file)
         del df['Unnamed: 0']
         df.to_markdown('mapping/' + file.replace('.xlsx', '.md'), index=False)
+    print("Mappings conversion to Markdown completed.")
 
 def DomainRadarPlotter_all_ontologies():
+    print("Generating Radar plots for all ontologies...")
     md_dict = load_ontologies_metadata()
     key_dom_interest = "Domain of Interest Represented (contained, related: broader/narrower, missing)"
     domains_of_interest = list(md_dict[list(md_dict.keys())[0]][key_dom_interest].keys())
@@ -224,8 +235,10 @@ def DomainRadarPlotter_all_ontologies():
     
     fig.write_html("Radarplot.html")
     fig.write_image("Radarplot.svg")
+    print("Radar plots generation completed.")
 
 def DomainRadarPlotter(ontology_name):
+    print(f"Generating Radar plot for {ontology_name}...")
     md_dict = load_ontologies_metadata()
     key_dom_interest = "Domain of Interest Represented (contained, related: broader/narrower, missing)"
     domains_of_interest = list(md_dict[ontology_name][key_dom_interest].keys())
@@ -280,8 +293,8 @@ def DomainRadarPlotter(ontology_name):
     ))
        
     fig.add_trace(go.Scatterpolar(
-          r=plotlist_c_n,
-          theta=domains_of_interest,
+          r=plotlist_c_n_b,
+        theta=domains_of_interest,
           fill='toself',
           marker=dict(color='gold'),
           name='2 = related: narrower'
@@ -313,8 +326,9 @@ def DomainRadarPlotter(ontology_name):
       showlegend=True
     )
     
-    fig.write_html("./radarplots/Radarplot_{}.html".format(ontology_name))
-    fig.write_image("./radarplots/Radarplot_{}.svg".format(ontology_name))
+    fig.write_html(f"./radarplots/Radarplot_{ontology_name}.html")
+    fig.write_image(f"./radarplots/Radarplot_{ontology_name}.svg")
+    print(f"Radar plot for {ontology_name} generated.")
 
 def run():    
     print("Starting the run function")
@@ -330,6 +344,3 @@ def run():
         print("UpdateMainReadme function completed")
     except Exception as e:
         print("Error occurred in UpdateMainReadme function:", e)
-
-
-
