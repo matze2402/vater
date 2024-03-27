@@ -317,8 +317,19 @@ def DomainRadarPlotter(ontology_name):
     fig.write_image("./radarplots/Radarplot_{}.svg".format(ontology_name))
 
 def run():    
+    print("Starting the run function")
     Master_Table = './master_table/MT_OntoWorldMap_2023-10-11.xlsx'
-    ConvertExcelToMD(Master_Table)
-    UpdateMainReadme()
+    try:
+        ConvertExcelToMD(Master_Table)
+        print("ConvertExcelToMD function completed")
+    except Exception as e:
+        print("Error occurred in ConvertExcelToMD function:", e)
+    
+    try:
+        UpdateMainReadme()
+        print("UpdateMainReadme function completed")
+    except Exception as e:
+        print("Error occurred in UpdateMainReadme function:", e)
+
 
 
