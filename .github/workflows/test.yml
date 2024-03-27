@@ -24,6 +24,11 @@ jobs:
       - name: Install plotly
         run: pip install plotly
 
+      - name: Install openpyxl
+        run: pip install openpyxl
+
+      - name: Install kaleido
+        run: pip install kaleido
         
 
       - name: Run Automation Script
