@@ -30,4 +30,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.my_token }}
         run: python .github/scripts/convert.py
+             python convert.run()
           
