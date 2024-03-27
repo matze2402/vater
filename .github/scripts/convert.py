@@ -344,3 +344,6 @@ def run():
         print("UpdateMainReadme function completed")
     except Exception as e:
         print("Error occurred in UpdateMainReadme function:", e)
+
+if __name__ == "__main__":
+    run()
