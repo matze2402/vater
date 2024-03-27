@@ -29,5 +29,5 @@ jobs:
       - name: Run Automation Script
         env:
           GITHUB_TOKEN: ${{ secrets.my_token }}
-        run: |
-          python .github/scripts/convert.py
+        run: python .github/scripts/convert.py
+          
